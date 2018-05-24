@@ -1,0 +1,17 @@
+<h1 *ngIf="loading$|async; else content">Loading</h1>
+<ng-template #content>
+  <app-post-item [post]="post" *ngFor="let post of posts"></app-post-item>
+  <div class="mt-4 text-center">
+    <ngb-pagination [collectionSize]="total"
+                    [page]="page$ | async"
+                    (pageChange)="changePage($event)"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [ellipses]="false"
+                    [pageSize]="10"
+                    [boundaryLinks]="true">
+
+    </ngb-pagination>
+
+  </div>
+</ng-template>
