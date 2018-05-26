@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostDetailComponent } from './post-detail.component';
 
-describe('PostDetailComponent', () => {
+describe('UserTodoComponent', () => {
   let component: PostDetailComponent;
   let fixture: ComponentFixture<PostDetailComponent>;
 
