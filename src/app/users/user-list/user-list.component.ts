@@ -38,7 +38,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy),
         switchMap(page => {
           this.loading$.next(true);
-          return this.usersService.list(page);
+          return this.usersService.getUserlist(page);
         })
       )
       .subscribe(

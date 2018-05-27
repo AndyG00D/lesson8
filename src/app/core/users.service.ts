@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ApiUrls } from './api-urls';
-import { User, Todo } from './models/user';
+import { User } from './models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { User, Todo } from './models/user';
 export class UsersService {
   constructor(private api: HttpClient) {}
 
-  list(page = 1, perPage = 3) {
+  getUserlist(page = 1, perPage = 3) {
     const params = {
       _limit: perPage.toString(),
       _page: page.toString(),
@@ -28,20 +29,5 @@ export class UsersService {
           };
         })
       );
-  }
-
-  detail(id) {
-    return this.api.get<Todo[]>(`http://localhost:3030/todos?userId=${id}&_sort=completed&_order=asc`);
-    // return this.api.get<Todo>(`${ApiUrls.todos}/?userId=${id}`);
-      // , {
-      // params: {
-      //   _expand: 'user',
-      //   _embed: 'todos'
-      // }
-    // });
-  }
-
-  patchTodoCompleted(id: number, completed: boolean) {
-    return this.api.patch(`http://localhost:3030/todos/${id}`, {"completed": completed});
   }
 }

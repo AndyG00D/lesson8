@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Todo } from '../../core/models/user';
-import { UsersService } from '../../core/users.service';
+import { Todo } from '../../core/models/todo';
+import { TodoService} from '../../core/todo.service';
 
 @Component({
   selector: 'app-user-todo',
@@ -17,7 +17,7 @@ export class UserTodoComponent implements OnInit, OnDestroy {
   public todos: Todo[] = [];
 
   constructor(
-    private usersService: UsersService,
+    private todoService: TodoService,
     private route: ActivatedRoute
   ) {}
 
@@ -28,7 +28,7 @@ export class UserTodoComponent implements OnInit, OnDestroy {
           this.loading$.next(true);
         }),
         takeUntil(this.destroy),
-        switchMap(params => this.usersService.detail(+params['id']))
+        switchMap(params => this.todoService.getUserTodo(+params['id']))
       )
       .subscribe(
         todos => {
@@ -49,7 +49,7 @@ export class UserTodoComponent implements OnInit, OnDestroy {
 
 
   public checkTodo(currentTodo: Todo) {
-    this.usersService.patchTodoCompleted(currentTodo.id, !currentTodo.completed)
+    this.todoService.patchTodoCompleted(currentTodo.id, !currentTodo.completed)
       .subscribe(
         todo => {
           console.log('change todo: ' + JSON.stringify(todo));
