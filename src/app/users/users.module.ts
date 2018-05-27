@@ -7,6 +7,7 @@ import { UserItemComponent } from './components/user-item/user-item.component';
 import { UserTodoComponent } from './user-todo/user-todo.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { UsersRoutingModule } from './users-routing.module';
+import { GmapArticleComponent } from './components/gmap-article/gmap-article.component';
 
 @NgModule({
   imports: [CommonModule, UsersRoutingModule, NgbPaginationModule],
@@ -14,7 +15,8 @@ import { UsersRoutingModule } from './users-routing.module';
     UserListComponent,
     UserItemComponent,
     UserTodoComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    GmapArticleComponent
   ],
   exports: [UserListComponent, UserTodoComponent]
 })

@@ -15,7 +15,6 @@ export class UserTodoComponent implements OnInit, OnDestroy {
   public loading$ = new BehaviorSubject(true);
   private destroy = new Subject();
   public todos: Todo[] = [];
-  public text: string;
 
   constructor(
     private usersService: UsersService,
@@ -29,12 +28,11 @@ export class UserTodoComponent implements OnInit, OnDestroy {
           this.loading$.next(true);
         }),
         takeUntil(this.destroy),
-        switchMap(params => this.loadTodo(+params['id']))
+        switchMap(params => this.usersService.detail(+params['id']))
       )
       .subscribe(
         todos => {
           this.todos = todos;
-          this.text = JSON.stringify(todos);
           this.loading$.next(false);
         },
         err => {
@@ -49,7 +47,17 @@ export class UserTodoComponent implements OnInit, OnDestroy {
     this.loading$.complete();
   }
 
-  private loadTodo(id) {
-    return this.usersService.detail(id);
+
+  public checkTodo(currentTodo: Todo) {
+    this.usersService.patchTodoCompleted(currentTodo.id, !currentTodo.completed)
+      .subscribe(
+        todo => {
+          console.log('change todo: ' + JSON.stringify(todo));
+          this.ngOnInit();
+        },
+        error => {
+          console.log('Error: ' + error.message);
+        }
+      );
   }
 }

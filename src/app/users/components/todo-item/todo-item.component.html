@@ -1,4 +1,7 @@
-<!--<hr>-->
-<div>
-<a>{{ todo.id }} {{todo.title}} {{todo.completed}}</a>
-</div>
+  <input
+    [id]="'todo'+ todo.id"
+    type="checkbox"
+    [checked]="todo.completed"
+    (change)="change(todo)">
+  <label [for]="'todo'+ todo.id">{{todo.title}}</label>
+

@@ -6,21 +6,11 @@
   border-bottom: 1px solid #cccccc;
 }
 
-p {
+label{
   margin: 0;
+  padding-left: 15px;
 }
 
-.comment-name {
-  font-size: 1.1em;
-  margin-bottom: .3em;
-}
-
-.comment-body {
-  font-size: .9em;
-}
-
-.comment-meta {
-  font-size: .7em;
-  color: #777777;
-  margin-top: .3em;
+input:checked + label{
+  text-decoration: line-through;
 }

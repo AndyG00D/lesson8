@@ -1,7 +1,6 @@
 <h1 *ngIf="loading$|async; else content">Loading</h1>
 <ng-template #content>
   <app-user-item [user]="user" *ngFor="let user of users"></app-user-item>
-  <!--{{ text }}-->
   <div class="mt-4 text-center">
     <ngb-pagination [collectionSize]="total"
                     [page]="page$ | async"

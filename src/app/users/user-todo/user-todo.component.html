@@ -1,15 +1,11 @@
-<p><a href="" routerLink="..">&lt; Back to posts list</a></p>
+<p><a href="" routerLink="..">&lt; Back to users list</a></p>
 <h1 *ngIf="loading$|async; else postContent">Loading</h1>
 
-
 <ng-template #postContent>
-
-  <!--<h2 class="post-title">{{post?.title|titlecase}}</h2>-->
-  <!--<p class="post-help">Author: {{post?.user?.name}}</p>-->
-  <!--<main class="post-text">{{post?.body}}</main>-->
-  <!--<app-todos [todos]="post?.ctextomments"></app-todos>-->
-  <!--<p class="post-help">{{text}}</p>-->
-  <app-todo-item [todo]="todo" *ngFor="let todo of todos"></app-todo-item>
-
+  <app-todo-item
+    [todo]="todo"
+    *ngFor="let todo of todos"
+    (onChanged) = "checkTodo($event)">
+  </app-todo-item>
 </ng-template>
 

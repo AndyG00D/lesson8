@@ -31,7 +31,7 @@ export class UsersService {
   }
 
   detail(id) {
-    return this.api.get<Todo[]>(`http://localhost:3030/todos?userId=${id}`);
+    return this.api.get<Todo[]>(`http://localhost:3030/todos?userId=${id}&_sort=completed&_order=asc`);
     // return this.api.get<Todo>(`${ApiUrls.todos}/?userId=${id}`);
       // , {
       // params: {
@@ -39,5 +39,9 @@ export class UsersService {
       //   _embed: 'todos'
       // }
     // });
+  }
+
+  patchTodoCompleted(id: number, completed: boolean) {
+    return this.api.patch(`http://localhost:3030/todos/${id}`, {"completed": completed});
   }
 }

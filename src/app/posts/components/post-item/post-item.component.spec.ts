@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostItemComponent } from './post-item.component';
 
-describe('UserItemComponent', () => {
+describe('GmapArticleComponent', () => {
   let component: PostItemComponent;
   let fixture: ComponentFixture<PostItemComponent>;
 

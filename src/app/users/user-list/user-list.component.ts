@@ -17,7 +17,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   public loading$ = new BehaviorSubject(true);
   public total: number = 0;
   private destroy = new Subject();
-  public text: string;
 
   constructor(
     private usersService: UsersService,
@@ -46,7 +45,6 @@ export class UserListComponent implements OnInit, OnDestroy {
         res => {
           this.loading$.next(false);
           this.users = res.data;
-          this.text = JSON.stringify(res.data);
           this.total = res.total;
         },
         () => {
